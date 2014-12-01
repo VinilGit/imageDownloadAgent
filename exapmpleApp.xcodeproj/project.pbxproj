@@ -16,6 +16,8 @@
 		BEFE00A81A29C48F00A5EFF9 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE00A71A29C48F00A5EFF9 /* Shot.swift */; };
 		BEFE00AB1A29C6EE00A5EFF9 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE00AA1A29C6EE00A5EFF9 /* TableViewCell.swift */; };
 		BEFE00AE1A29C81C00A5EFF9 /* DribbleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFE00AD1A29C81C00A5EFF9 /* DribbleModel.swift */; };
+		EC8ACF301A2CE39F008714D0 /* ImageDownloadEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8ACF2E1A2CE39F008714D0 /* ImageDownloadEngine.swift */; };
+		EC8ACF311A2CE39F008714D0 /* imageDownloadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8ACF2F1A2CE39F008714D0 /* imageDownloadOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		BEFE00A71A29C48F00A5EFF9 /* Shot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shot.swift; path = Classes/Shot.swift; sourceTree = "<group>"; };
 		BEFE00AA1A29C6EE00A5EFF9 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = Classes/TableViewCell.swift; sourceTree = "<group>"; };
 		BEFE00AD1A29C81C00A5EFF9 /* DribbleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DribbleModel.swift; path = Classes/DribbleModel.swift; sourceTree = "<group>"; };
+		EC8ACF2E1A2CE39F008714D0 /* ImageDownloadEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageDownloadEngine.swift; path = ID/ImageDownloadEngine.swift; sourceTree = "<group>"; };
+		EC8ACF2F1A2CE39F008714D0 /* imageDownloadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = imageDownloadOperation.swift; path = ID/imageDownloadOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,11 +95,12 @@
 		BEFE00801A29C35700A5EFF9 /* exapmpleApp */ = {
 			isa = PBXGroup;
 			children = (
-				BE2367E71A29CF670057AB12 /* ThirdParty */,
+				BEFE00A71A29C48F00A5EFF9 /* Shot.swift */,
+				BEFE00AA1A29C6EE00A5EFF9 /* TableViewCell.swift */,
+				BEFE00A41A29C40800A5EFF9 /* TableViewController.swift */,
+				EC8ACF291A2CDF7D008714D0 /* imageDownloader */,
 				BEFE00AC1A29C7E400A5EFF9 /* Api */,
-				BEFE00A91A29C6D000A5EFF9 /* Views */,
-				BEFE00A61A29C46C00A5EFF9 /* Objects */,
-				BEFE00A31A29C3DA00A5EFF9 /* viewController */,
+				BE2367E71A29CF670057AB12 /* ThirdParty */,
 				BEFE00831A29C35700A5EFF9 /* AppDelegate.swift */,
 				BEFE00871A29C35700A5EFF9 /* Main.storyboard */,
 				BEFE008A1A29C35700A5EFF9 /* Images.xcassets */,
@@ -129,36 +134,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BEFE00A31A29C3DA00A5EFF9 /* viewController */ = {
-			isa = PBXGroup;
-			children = (
-				BEFE00A41A29C40800A5EFF9 /* TableViewController.swift */,
-			);
-			name = viewController;
-			sourceTree = "<group>";
-		};
-		BEFE00A61A29C46C00A5EFF9 /* Objects */ = {
-			isa = PBXGroup;
-			children = (
-				BEFE00A71A29C48F00A5EFF9 /* Shot.swift */,
-			);
-			name = Objects;
-			sourceTree = "<group>";
-		};
-		BEFE00A91A29C6D000A5EFF9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				BEFE00AA1A29C6EE00A5EFF9 /* TableViewCell.swift */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		BEFE00AC1A29C7E400A5EFF9 /* Api */ = {
 			isa = PBXGroup;
 			children = (
 				BEFE00AD1A29C81C00A5EFF9 /* DribbleModel.swift */,
 			);
 			name = Api;
+			sourceTree = "<group>";
+		};
+		EC8ACF291A2CDF7D008714D0 /* imageDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				EC8ACF2E1A2CE39F008714D0 /* ImageDownloadEngine.swift */,
+				EC8ACF2F1A2CE39F008714D0 /* imageDownloadOperation.swift */,
+			);
+			name = imageDownloader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,10 +251,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEFE00AB1A29C6EE00A5EFF9 /* TableViewCell.swift in Sources */,
+				EC8ACF311A2CE39F008714D0 /* imageDownloadOperation.swift in Sources */,
 				BEFE00AE1A29C81C00A5EFF9 /* DribbleModel.swift in Sources */,
 				BEFE00A51A29C40800A5EFF9 /* TableViewController.swift in Sources */,
 				BE2367E91A29CF790057AB12 /* SwiftyJSON.swift in Sources */,
 				BEFE00841A29C35700A5EFF9 /* AppDelegate.swift in Sources */,
+				EC8ACF301A2CE39F008714D0 /* ImageDownloadEngine.swift in Sources */,
 				BEFE00A81A29C48F00A5EFF9 /* Shot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +374,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = exapmpleApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -392,7 +386,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = exapmpleApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

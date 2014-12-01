@@ -11,32 +11,36 @@ import UIKit
 class DribbleModel: NSObject {
     
     var shotList: [Shot] = []
-    
-    private var currentPage = 0
+    var maxShots = 300
+    var currentPage: Int { get { return _nextPage > 0 ? _nextPage-1 : 0 }}
+
+    private var _nextPage: Int = 0
+    private var _task: NSURLSessionDataTask?
+
     lazy private var data = NSMutableData()
     
     func getNextPage(completition:()-> Void) {
-        let urlString = "http://api.dribbble.com/shots/popular";
+        if (_task != nil || shotList.count > maxShots) {
+           return
+        }
+        let urlString = "http://api.dribbble.com/shots/popular?page=\(self._nextPage)";
         var url: NSURL = NSURL(string: urlString)!
         
         let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
-            
+        _task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
             if error != nil {
-                // If there is an error in the web request, print it to the console
                 println(error.localizedDescription)
             }
             
             var err: NSError?
             var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
             if err != nil {
-                // If there is an error parsing JSON, print it to the console
                 println("JSON Error \(err!.localizedDescription)")
             }
             
             let json = JSON(object: jsonResult)
             let count: Int? = json["shots"].arrayValue?.count
-            println("found \(count!) challenges")
+            println("found \(count!) entities")
             
             var resutlArray: [Shot] = [];
             if let ct = count {
@@ -51,9 +55,12 @@ class DribbleModel: NSObject {
                 }
             }
             self.shotList += resutlArray;
+            self._nextPage++;
+            println("Total \(self.shotList.count) entities")
+            self._task = nil
             completition()
         })
-        task.resume()
+        _task!.resume()
     }
 
 }
