@@ -8,9 +8,9 @@
 
 import UIKit
 
-typealias operationHandler = (image: UIImage, NSError) -> Void
+typealias operationHandler = (image: UIImage?, error:NSError?) -> Void
 
-class imageDownloadOperation: NSObject {
+class ImageDownloadOperation: NSObject {
     
     var handler:operationHandler?
     var request:NSURLRequest
@@ -25,7 +25,8 @@ class imageDownloadOperation: NSObject {
             queue: NSOperationQueue.mainQueue(),
             completionHandler:{response, data, error in
                 if (self.handler != nil) {
-                    self.handler!(image: UIImage(data: data)!, error)
+                    let image = data != nil ? UIImage(data: data) : nil
+                    self.handler!(image: image, error: error)
                 }
         })
     }

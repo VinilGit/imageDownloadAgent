@@ -14,7 +14,7 @@ class DribbleModel: NSObject {
     var maxShots = 300
     var currentPage: Int { get { return _nextPage > 0 ? _nextPage-1 : 0 }}
 
-    private var _nextPage: Int = 0
+    private var _nextPage: Int = 1
     private var _task: NSURLSessionDataTask?
 
     lazy private var data = NSMutableData()
@@ -51,6 +51,7 @@ class DribbleModel: NSObject {
                         shot.imageUrl = NSURL(string: stringImageUrl!)!
                         shot.id = json["shots"][index]["id"].integerValue;
                         resutlArray.append(shot)
+//                        println("Add shot with id \(shot.id)")
                     }
                 }
             }

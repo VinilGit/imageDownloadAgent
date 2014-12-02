@@ -11,7 +11,9 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    let model = DribbleModel();
+    let imageEngine = ImageDownloadEngine()
+    let model = DribbleModel()
+    
     private let minShotsDownloaded = 100;
 
     override func viewDidLoad() {
@@ -60,11 +62,28 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reusedCell", forIndexPath: indexPath) as TableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("reusedCell", forIndexPath: indexPath) as TableViewCell
         
         let index = indexPath.row;
         let shot = model.shotList[index]
-        cell.idLabel.text = String(shot.id!)
+        cell.shotId = shot.id
+        cell.idLabel.text = shot.id != nil ? String(shot.id!) : ""
+        self.imageEngine.downloadImage(shot.imageUrl, handler: { (image, error) -> Void in
+            if (error != nil) {
+                println()
+            } else if let newImage = image {
+//                var newCell = self.tableView.cellForRowAtIndexPath(indexPath)
+//                if (newCell != nil) {
+                    if (cell.shotId != nil && shot.id != nil && cell.shotId == shot.id) {
+                        cell.imageView.image = newImage;
+                        cell.setNeedsDisplay()
+                        println("Image set for cell \(cell.shotId) \n\(shot.imageUrl)")
+                    } else {
+                        println("Oops")
+                    }
+//                }
+            }
+        })
         
         self._getNewShotsIfNeedToAfterIndex(index)
         

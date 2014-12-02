@@ -10,18 +10,41 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
-    @IBOutlet weak var shotImageView: UIImageView!
-    @IBOutlet weak var idLabel: UILabel!
+    var shotImageView: UIImageView!
+    var idLabel: UILabel!
+    var shotId:Int?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.setupVew()
     }
-
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setupVew()
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        self.imageView.image = nil
+        self.shotId = nil
+    }
+    
+    private func setupVew() {
+        self.clipsToBounds = true
+        let size = self.frame.size
+        let imageHeight = size.height
+        shotImageView = UIImageView(frame: CGRectMake(size.width-imageHeight, 0, imageHeight, imageHeight))
+        self.addSubview(shotImageView)
+        
+        
+        idLabel = UILabel(frame: CGRectMake(0, 0, size.width - imageHeight, imageHeight))
+        self.addSubview(idLabel)
     }
 
 }

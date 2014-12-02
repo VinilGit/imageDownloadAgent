@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Table View Controller-->
@@ -19,35 +18,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ags-ix-PpY" id="dXf-3u-8Fu">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7To-Ff-2Zh">
-                                            <rect key="frame" x="0.0" y="65" width="129" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="129" id="hQB-FB-IWX"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sTd-Hl-hoW">
-                                            <rect key="frame" x="137" y="5" width="175" height="140"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="140" id="ioZ-v4-RON"/>
-                                                <constraint firstAttribute="width" constant="175" id="oVS-IS-ah5"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="sTd-Hl-hoW" firstAttribute="trailing" secondItem="dXf-3u-8Fu" secondAttribute="trailingMargin" id="52Z-cM-Plh"/>
-                                        <constraint firstAttribute="centerY" secondItem="sTd-Hl-hoW" secondAttribute="centerY" id="O3D-uf-afg"/>
-                                        <constraint firstItem="sTd-Hl-hoW" firstAttribute="centerY" secondItem="7To-Ff-2Zh" secondAttribute="centerY" constant="-0.5" id="Oq7-F9-ZEL"/>
-                                        <constraint firstItem="7To-Ff-2Zh" firstAttribute="leading" secondItem="dXf-3u-8Fu" secondAttribute="leadingMargin" constant="-8" id="X1u-eI-ixs"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="idLabel" destination="7To-Ff-2Zh" id="HuP-JS-L01"/>
-                                    <outlet property="shotImageView" destination="sTd-Hl-hoW" id="JdA-gB-eeG"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
