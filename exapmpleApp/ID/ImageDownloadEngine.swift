@@ -11,11 +11,11 @@ import UIKit
 class ImageDownloadEngine: NSObject {
     
     public var useCache:Bool = true
+    public var maxParallelOperationCount = 5
     
     private var imageOperationQueue: [ ImageDownloadOperation ] = []
     private var images: [ NSURL:UIImage ] = [:]
     private var currentOperationCount = 0
-    private var maxOperationCount = 5
 
     
     internal func downloadImage(url: NSURL, handler:operationHandler?) {
@@ -51,7 +51,7 @@ class ImageDownloadEngine: NSObject {
         dispatch_async(dispatch_get_main_queue()) {
             self.currentOperationCount += 1
         }
-        if (currentOperationCount < maxOperationCount) {
+        if (currentOperationCount < maxParallelOperationCount) {
             operation.perform()
         } else {
             dispatch_async(dispatch_get_main_queue()) {

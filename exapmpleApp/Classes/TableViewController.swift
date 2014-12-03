@@ -19,6 +19,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imageEngine.maxParallelOperationCount = 1
+        
         self.clearsSelectionOnViewWillAppear = false
         
         var tblView =  UIView(frame: CGRectZero)
@@ -68,20 +70,20 @@ class TableViewController: UITableViewController {
         let shot = model.shotList[index]
         cell.shotId = shot.id
         cell.idLabel.text = shot.id != nil ? String(shot.id!) : ""
+        cell.imageView.image = nil
         self.imageEngine.downloadImage(shot.imageUrl, handler: { (image, error) -> Void in
             if (error != nil) {
                 println()
             } else if let newImage = image {
-//                var newCell = self.tableView.cellForRowAtIndexPath(indexPath)
-//                if (newCell != nil) {
-                    if (cell.shotId != nil && shot.id != nil && cell.shotId == shot.id) {
-                        cell.imageView.image = newImage;
-                        cell.setNeedsDisplay()
-                        println("Image set for cell \(cell.shotId) \n\(shot.imageUrl)")
-                    } else {
-                        println("Oops")
-                    }
-//                }
+                if (cell.shotId != nil && shot.id != nil && cell.shotId == shot.id) {
+                    cell.imageView.image = newImage;
+                    cell.idLabel.text = ""
+                    cell.setNeedsLayout()
+                    println("Image set for cell \(cell.shotId) \n\(shot.imageUrl)")
+                } else {
+                    var newCell:TableViewCell? = self.tableView.cellForRowAtIndexPath(indexPath) as? TableViewCell
+                    println("Oops \(newCell)")
+                }
             }
         })
         
